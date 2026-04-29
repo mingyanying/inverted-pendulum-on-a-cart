@@ -12,7 +12,7 @@ controllers, rendered in Pygame.
 ──────────────────────────  ← rail  (±3 m)
 ```
 
-[▶ Demo video](demo_ipoc.mp4)
+[![Demo](https://img.youtube.com/vi/xosSy-7pbzY/maxresdefault.jpg)](https://youtu.be/xosSy-7pbzY)
 
 ---
 
