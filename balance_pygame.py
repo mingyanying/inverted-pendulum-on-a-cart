@@ -35,11 +35,12 @@ def make_coords(W, H):
     CART_W_PX  = int(0.40 * SCALE)
     CART_H_PX  = int(0.20 * SCALE)
     WHEEL_R_PX = max(int(0.06 * SCALE), 4)
+    BALL_R_PX  = max(int(0.09 * SCALE), 4)
 
     def to_px(sx, sy):
         return int(SCR_CX + sx * SCALE), int(SCR_PY - sy * SCALE)
 
-    return to_px, CART_W_PX, CART_H_PX, WHEEL_R_PX
+    return to_px, CART_W_PX, CART_H_PX, WHEEL_R_PX, BALL_R_PX
 
 
 def make_colours():
@@ -236,7 +237,7 @@ def draw_hud(screen, font_s, C, controllers, current, W):
 # Drawing
 # ---------------------------------------------------------------------------
 def draw_frame(screen, font_l, font_s, C, to_px,
-               CART_W_PX, CART_H_PX, WHEEL_R_PX,
+               CART_W_PX, CART_H_PX, WHEEL_R_PX, BALL_R_PX,
                q, t_elapsed, controllers, controller, W):
     theta, x = q[0], q[1]
     cart_sx  = x
@@ -285,8 +286,8 @@ def draw_frame(screen, font_l, font_s, C, to_px,
     # pole + ball
     bx_s, by_s = to_px(ball_sx, ball_sy)
     pygame.draw.line(screen, C["POLE"], (cx_s, cy_s), (bx_s, by_s), 5)
-    pygame.draw.circle(screen, C["BALL"],       (bx_s, by_s), 12)
-    pygame.draw.circle(screen, (255, 255, 255), (bx_s, by_s), 12, 2)
+    pygame.draw.circle(screen, C["BALL"],       (bx_s, by_s), BALL_R_PX)
+    pygame.draw.circle(screen, (255, 255, 255), (bx_s, by_s), BALL_R_PX, 2)
 
     # pivot dot
     pygame.draw.circle(screen, C["PIVOT"], (cx_s, cy_s), 5)
@@ -325,7 +326,7 @@ keyboard    = KeyboardController()
 disturbance = DisturbanceController()
 
 screen, clock, font_l, font_s, W, H = setup_pygame()
-to_px, CART_W_PX, CART_H_PX, WHEEL_R = make_coords(W, H)
+to_px, CART_W_PX, CART_H_PX, WHEEL_R, BALL_R = make_coords(W, H)
 C = make_colours()
 
 controller = controllers["1"]
@@ -363,7 +364,7 @@ while running:
     t_elapsed += DT
 
     draw_frame(screen, font_l, font_s, C,
-               to_px, CART_W_PX, CART_H_PX, WHEEL_R,
+               to_px, CART_W_PX, CART_H_PX, WHEEL_R, BALL_R,
                q, t_elapsed, controllers, controller, W)
     pygame.display.flip()
     clock.tick(60)

@@ -40,5 +40,7 @@ class LQRController:
 
     def _lqr(self, q):
         """LQR gain vector tuned for the inverted equilibrium (theta = pi)."""
-        k1, k2, k3, k4 = 112.099, -0.500, 32.240, -2.904  # balanced preset
+        # k1, k2, k3, k4 = 134.003, -2.236, 38.896, -6.924  # balanced preset
+        k1, k2, k3, k4 = 174.541, -10.000, 51.984, -16.325  # super_aggressive preset
+
         return -(k1 * (q[0] - pi) + k2 * q[1] + k3 * q[2] + k4 * q[3])

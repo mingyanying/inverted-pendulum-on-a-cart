@@ -9,7 +9,7 @@ G     = 9.8   # gravity          (m/s^2)
 R     = 1.0   # pole length      (m)
 M     = 4.0   # cart mass        (kg)
 m     = 1.0   # ball mass        (kg)
-X_LIM = 2  # rail half-length (m)
+X_LIM = 3.0  # rail half-length (m)
 
 # Air resistance (linear drag)
 B_CART = 0.3    # cart translational drag  (N·s/m)

@@ -53,7 +53,7 @@ B = np.array([[0], [0], [1/(M*R)], [1/M]])
 LQR_PRESETS = {
     "balanced":   (np.diag([50.0,  1.0,  5.0,  1.0]), 1.0),
     "aggressive": (np.diag([200.0, 5.0,  20.0, 2.0]), 0.5),
-    "smooth":     (np.diag([20.0,  0.5,  2.0,  0.5]), 2.0),
+    "super_aggressive": (np.diag([100.0,  100,  1.0,  1.0]), 1.0),
 }
 
 

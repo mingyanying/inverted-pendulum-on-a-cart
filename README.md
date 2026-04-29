@@ -9,8 +9,10 @@ controllers, rendered in Pygame.
       /  ← pole  (R = 1 m)
      /
  [cart]  ← cart  (M = 4 kg)
-──────────────────────────  ← rail  (±2 m)
+──────────────────────────  ← rail  (±3 m)
 ```
+
+[▶ Demo video](demo_ipoc.mp4)
 
 ---
 
@@ -71,7 +73,7 @@ q = [theta, x, theta_dot, x_dot]
 | `R`      | 1 m    | pole length         |
 | `G`      | 9.8    | gravity (m/s²)      |
 | `U_MAX`  | 50 N   | max actuator force  |
-| `X_LIM`  | 2 m    | rail half-length    |
+| `X_LIM`  | 3 m    | rail half-length    |
 | `B_CART` | 0.3    | cart drag (N·s/m)   |
 | `B_POLE` | 0.05   | pole drag (N·m·s/rad)|
 
@@ -106,7 +108,7 @@ gain vector:
 
 ```
 u = −(k1·(θ−π) + k2·x + k3·θ̇ + k4·ẋ)
-k = [112.099, −0.500, 32.240, −2.904]   (balanced preset)
+k = [174.541, −10.000, 51.984, −16.325]   (super_aggressive preset)
 ```
 
 Gains are computed offline by solving the continuous-time LQR Algebraic Riccati
@@ -166,7 +168,7 @@ python tune_gains.py --pid-only               # skip LQR
 ```
 
 **LQR** — solved analytically via the continuous-time Algebraic Riccati Equation.
-Three presets: `balanced`, `aggressive`, `smooth`.
+Three presets: `balanced`, `aggressive`, `super_aggressive`.
 
 **PID** — tuned numerically with Nelder-Mead, minimising a simulation cost
 (integral of squared errors + force penalty) over random near-upright starts.
